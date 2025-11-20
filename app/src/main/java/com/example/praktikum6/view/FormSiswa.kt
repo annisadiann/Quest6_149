@@ -115,4 +115,28 @@ fun FormSiswa(
                 color = Color.Red
             )
 
+            OutlinedTextField(
+                value = txtAlamat,
+                singleLine = true,
+                shape = MaterialTheme.shapes.medium,
+                modifier = Modifier.width(350.dp),
+                label = { Text(text = "Alamat Lengkap") },
+                onValueChange = {
+                    txtAlamat = it
+                },
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth(1f)
+                    .padding(horizontal = 20.dp),
+                enabled = txtAlamat.isNotEmpty(),
+                onClick = { onSubmitButtonClicked(listData) }
+            ) {
+                Text(stringResource(id = R.string.submit))
+            }
 
+        }
+
+    }
+}
