@@ -47,4 +47,72 @@ fun FormSiswa(
     var txtGender by remember { mutableStateOf("") }
     val listData: MutableList<String> = mutableListOf(txtNama, txtGender, txtAlamat)
 
+    Scaffold(
+        modifier = Modifier,
+        {
+            TopAppBar(
+                title = {
+                    Text(
+                        stringResource(id = R.string.app_name),
+                        color = Color.White
+                    )
+                },
+                colors = TopAppBarDefaults.mediumTopAppBarColors(colorResource(id = R.color.purple_500))
+
+            )
+        }
+    ) { isiRuang ->
+        Column(
+            modifier = androidx.compose.ui.Modifier.padding(isiRuang),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            OutlinedTextField(
+                value = txtNama,
+                singleLine = true,
+                shape = MaterialTheme.shapes.medium,
+                modifier = Modifier
+                    .width(350.dp)
+                    .padding(top = 20.dp),
+                label = { Text(text = "Nama Lengkap") },
+                onValueChange = {
+                    txtNama = it
+                },
+            )
+            HorizontalDivider(
+                modifier = androidx.compose.ui.Modifier
+                    .padding(20.dp)
+                    .width(250.dp), thickness = Thickness, color =
+                    Color.Red
+            )
+
+            Row {
+                pilihanJK.forEach { item ->
+                    Row(
+                        modifier = Modifier.selectable(
+                            selected = txtGender == item,
+                            onClick = {
+                                txtGender = item
+                            }
+                        ),
+                        verticalAlignment = Alignment.CenterVertically) {
+                        RadioButton(
+                            selected = txtGender == item,
+                            onClick = {
+                                txtGender = item
+                            }
+                        )
+                        Text(text = item)
+                    }
+                }
+
+            }
+            HorizontalDivider(
+                modifier = androidx.compose.ui.Modifier
+                    .padding(20.dp)
+                    .width(250.dp),
+                thickness = 1.dp,
+                color = Color.Red
+            )
+
 
